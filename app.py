@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load pipeline (model with processor)
-pipeline = joblib.load("dt_pipeline.pkl")
+pipeline = joblib.load("tree_pipeline.pkl")
 
 st.title("Random Forest MPI Status Prediction App")
 
