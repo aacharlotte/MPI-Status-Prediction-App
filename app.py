@@ -2,9 +2,12 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+# Load trained RF pipeline
+@st.cache_resource
+def load_pipeline():
+    return joblib.load("rf_pipeline.pkl")
 
-# Load pipeline (model with processor)
-rf_pipeline = joblib.load("rf_pipeline.pkl")
+pipeline = load_pipeline()
 
 st.title("Random Forest MPI Status Prediction App")
 
