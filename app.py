@@ -227,7 +227,7 @@ if st.button("Predict MPI Status"):
 
 
     # Predict with rf model
-    prediction = rf_pipeline.predict(data)
+    prediction = pipeline.predict(data)
     st.success(f"Predicted MPI Status: {prediction[0]}")
 
 
