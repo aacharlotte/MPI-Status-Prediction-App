@@ -5,9 +5,9 @@ import joblib
 # Load pipeline (model with processor)
 pipeline = joblib.load("tr_pipeline.pkl")
 
-st.title("Random Forest MPI Status Prediction App")
+st.title("Random Forest Multidimensional Poverty Status Prediction App")
 
-st.write("Fill in household and individual details to predict MPI poverty status")
+st.write("Fill in household and individual details to predict multidimensional poverty status")
 
 
 education_options = [
