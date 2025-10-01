@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load pipeline (model with processor)
-pipeline = joblib.load("tr_pipeline.pkl")
+pipeline = joblib.load("tr_pipeline(5).pkl")
 
 st.title("Random Forest Multidimensional Poverty Status Prediction App")
 
