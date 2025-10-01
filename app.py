@@ -6,6 +6,10 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
+
+# Load trained model only
+model = joblib.load("decision_tree_model2.pkl")
 
 median_cols=['age', 'HC08a', 'hsize', 'HC03', 'employment', 'access_financial_account_any', 'digital_reg_financial', 'HHhead']
 cat_cols=['E05', 'E03', 'HE02', 'HE07', 'HE09', 'HE11', 'HC07', 'HC14', 'HC15',
@@ -29,7 +33,12 @@ preprocessor = ColumnTransformer([
     ('cat', cat_transformer, cat_cols)
 ])
 
-pipeline = joblib.load("decision_tree_pipeline.pkl")
+# Rebuild full pipeline with preprocessor + trained model
+pipeline = Pipeline([
+    ("preprocessor", preprocessor),
+    ("model", model)
+])
+
 
 
 st.title("Random Forest Multidimensional Poverty Status Prediction App")
