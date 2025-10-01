@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
 # Load  data 
-datadf = pd.read_csv("data.csv")  
+datadf = pd.read_csv("data.csv")
 
 X_train = datadf.drop("M0", axis=1)  
 y_train = datadf["M0"]
