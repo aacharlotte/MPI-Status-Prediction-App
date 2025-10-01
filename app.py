@@ -11,8 +11,7 @@ from sklearn.tree import DecisionTreeClassifier
 # Load  data 
 data = pd.read_csv("data.csv")   # you’d need to ship this file with the app
 
-X_train = data.drop("M0", axis=1)
-y_train = data["M0"]
+X_train = data
 
 # Load trained model only
 model = joblib.load("decision_tree_model2.pkl")
