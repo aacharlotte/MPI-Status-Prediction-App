@@ -8,6 +8,12 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
+# Load  data 
+data = pd.read_csv("data.csv")   # you’d need to ship this file with the app
+
+X_train = data.drop("M0", axis=1)
+y_train = data["M0"]
+
 # Load trained model only
 model = joblib.load("decision_tree_model2.pkl")
 
@@ -32,6 +38,9 @@ preprocessor = ColumnTransformer([
     ('median_num', median_transformer, median_cols),
     ('cat', cat_transformer, cat_cols)
 ])
+
+# Rebuild preprocessor as before...
+preprocessor.fit(X_train) 
 
 # Rebuild full pipeline with preprocessor + trained model
 pipeline = Pipeline([
