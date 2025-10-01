@@ -1,9 +1,17 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from sklearn.pipeline import Pipeline
 
-# Load pipeline (model with processor)
-pipeline = joblib.load("decision_tree_pipeline.pkl")
+# Load back
+preprocessor = joblib.load("preprocessor.pkl")
+model = joblib.load("decision_tree_model.pkl")
+
+# Rebuild pipeline
+pipeline = Pipeline([
+    ("preprocessor", preprocessor),
+    ("model", model)
+])
 
 st.title("Random Forest Multidimensional Poverty Status Prediction App")
 
