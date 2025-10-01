@@ -9,15 +9,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
 # Load  data 
-data = pd.read_csv("data.csv")   # you’d need to ship this file with the app
+data = pd.read_csv("data.csv")  
 
-X = data.drop("M0", axis=1)  #
-y = data["M0"]
+X_train = data.drop("M0", axis=1)  
+y_train = data["M0"]
 
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
-)
 
 # Load trained model only
 model = joblib.load("decision_tree_model2.pkl")
