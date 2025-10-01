@@ -29,14 +29,8 @@ preprocessor = ColumnTransformer([
     ('cat', cat_transformer, cat_cols)
 ])
 
-model = joblib.load("decision_tree_model.pkl")
+pipeline = joblib.load("decision_tree_pipeline.pkl")
 
-# Build full pipeline in app
-
-pipeline = Pipeline([
-    ("preprocessor", preprocessor),
-    ("model", model)
-])
 
 st.title("Random Forest Multidimensional Poverty Status Prediction App")
 
