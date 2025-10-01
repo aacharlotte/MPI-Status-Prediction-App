@@ -2,12 +2,37 @@ import streamlit as st
 import pandas as pd
 import joblib
 from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import StandardScaler
 
-# Load back
-preprocessor = joblib.load("preprocessor.pkl")
+median_cols=['age', 'HC08a', 'hsize', 'HC03', 'employment', 'access_financial_account_any', 'digital_reg_financial', 'HHhead']
+cat_cols=['E05', 'E03', 'HE02', 'HE07', 'HE09', 'HE11', 'HC07', 'HC14', 'HC15',
+       'HC18', 'HC04', 'HC05', 'HC06', 'HA0318', 'HA0317', 'HA0316', 'HA0320',
+       'HA039', 'HA0311', 'HA038', 'Working', 'wage_st']
+
+# Transformers
+median_transformer = Pipeline([
+    ('imputer', SimpleImputer(strategy="median")),
+    ('scaler', StandardScaler())
+])
+
+cat_transformer = Pipeline([
+    ('imputer', SimpleImputer(strategy="constant", fill_value="MISSING")),
+    ('encoder', OneHotEncoder(handle_unknown="ignore"))
+])
+
+# Preprocessor
+preprocessor = ColumnTransformer([
+    ('median_num', median_transformer, median_cols),
+    ('cat', cat_transformer, cat_cols)
+])
+
 model = joblib.load("decision_tree_model.pkl")
 
-# Rebuild pipeline
+# Build full pipeline in app
+
 pipeline = Pipeline([
     ("preprocessor", preprocessor),
     ("model", model)
