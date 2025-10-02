@@ -267,6 +267,11 @@ if st.button("Predict MPI Status"):
 
     }])
 
+# Ensure columns match training
+expected_cols = pipeline.named_steps["preprocessor"].feature_names_in_
+
+# Drop extras and reorder to match
+data = data[[col for col in expected_cols if col in data.columns]]
 
     # Predict with rf model
     prediction = pipeline.predict(data)
