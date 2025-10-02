@@ -14,6 +14,9 @@ datadf = pd.read_csv("data.csv")
 X_train = datadf.drop("M0", axis=1)
 y_train = datadf["M0"]
 
+# Drop M0 if it sneaks into the input
+if "M0" in data.columns:
+    data = data.drop(columns=["M0"])
 
 
 # Load trained model only
