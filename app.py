@@ -267,14 +267,16 @@ if st.button("Predict MPI Status"):
 
     }])
 
-# Ensure columns match training
+
+# Align uploaded data with training features
 expected_cols = pipeline.named_steps["preprocessor"].feature_names_in_
 
-# Drop extras and reorder to match
-data = data[[col for col in expected_cols if col in data.columns]]
+# Reindex ensures correct order, drops extras, fills missing with 0
+data = data.reindex(columns=expected_cols, fill_value=0)
 
-    # Predict with rf model
-    prediction = pipeline.predict(data)
-    st.success(f"Predicted MPI Status: {prediction[0]}")
+#  predict
+prediction = pipeline.predict(data)
+
+st.success(f"Predicted MPI Status: {prediction[0]}")
 
 
