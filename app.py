@@ -269,10 +269,10 @@ if st.button("Predict MPI Status"):
 
 
 # Align uploaded data with training features
-expected_cols = pipeline.named_steps["preprocessor"].feature_names_in_
+#expected_cols = pipeline.named_steps["preprocessor"].feature_names_in_
 
 # Reindex ensures correct order, drops extras, fills missing with 0
-data = data.reindex(columns=expected_cols, fill_value=0)
+#data = data.reindex(columns=expected_cols, fill_value=0)
 
 #  predict
 prediction = pipeline.predict(data)
