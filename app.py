@@ -277,6 +277,6 @@ if st.button("Predict MPI Status"):
 #  predict
 prediction = pipeline.predict(data)
 
-st.success(f"Predicted MPI Status: {prediction[ ]}")
+st.success(f"Predicted MPI Status: {prediction[1]}")
 
 
