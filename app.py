@@ -277,6 +277,6 @@ data = data.reindex(columns=expected_cols, fill_value=0)
 #  predict
 prediction = pipeline.predict(data)
 
-st.success(f"Predicted MPI Status: {prediction[1]}")
+st.success(f"Predicted MPI Status: {prediction[0]}")
 
 
